@@ -8,8 +8,13 @@ import Memoji from "../assets/Memoji.PNG";
  * 1) Rename PDF to: Retaj-Alsakhri-CV.pdf
  * 2) Put it in: public/Retaj-Alsakhri-CV.pdf
  */
-const CV_FILE = "Retaj-Alsakhri-CV.pdf";
-const CV_PATH = `/${CV_FILE}`;
+<a
+  href={import.meta.env.BASE_URL + "Retaj-Alsakhri-CV.pdf"}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  CV
+</a>;
 
 const PROFILE = {
   name: "Retaj Alsakhri",
