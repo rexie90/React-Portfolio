@@ -1,4 +1,4 @@
-// src/components/Desktop.jsx
+// src/Desktop.jsx
 import { useEffect, useMemo, useState } from "react";
 import Window from "./Window.jsx";
 import Memoji from "../assets/Memoji.PNG";
@@ -8,13 +8,8 @@ import Memoji from "../assets/Memoji.PNG";
  * 1) Rename PDF to: Retaj-Alsakhri-CV.pdf
  * 2) Put it in: public/Retaj-Alsakhri-CV.pdf
  */
-<a
-  href={import.meta.env.BASE_URL + "Retaj-Alsakhri-CV.pdf"}
-  target="_blank"
-  rel="noopener noreferrer"
->
-  CV
-</a>;
+const CV_FILE = "Retaj-Alsakhri-CV.pdf";
+const CV_PATH = `/${CV_FILE}`;
 
 const PROFILE = {
   name: "Retaj Alsakhri",
@@ -81,7 +76,23 @@ function IconHome() {
     </svg>
   );
 }
-
+function IconUser() {
+  return (
+    <svg className="ico" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 12a4.2 4.2 0 1 0-4.2-4.2A4.2 4.2 0 0 0 12 12Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M4.5 20a7.5 7.5 0 0 1 15 0"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 function IconGrid() {
   return (
     <svg className="ico" viewBox="0 0 24 24" fill="none">
@@ -94,7 +105,6 @@ function IconGrid() {
     </svg>
   );
 }
-
 function IconLink() {
   return (
     <svg className="ico" viewBox="0 0 24 24" fill="none">
@@ -126,72 +136,6 @@ const APPS = [
   { id: "connect_cv", label: "Connect & CV", Icon: IconLink },
 ];
 
-/* Connect icons */
-function IconMail() {
-  return (
-    <svg className="linkCard__icon" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M6 8l6 4 6-4"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function IconGitHub() {
-  return (
-    <svg className="linkCard__icon" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M9 19c-3 1-3-1-4-1m8 2v-3.5c0-1 .1-1.5-.5-2 1.5-.2 3-.8 3-3.5 0-.8-.3-1.5-.8-2.1.1-.2.4-1-.1-2.1 0 0-.7-.2-2.2.8-.6-.2-1.3-.3-2-.3s-1.4.1-2 .3c-1.5-1-2.2-.8-2.2-.8-.5 1.1-.2 1.9-.1 2.1-.5.6-.8 1.3-.8 2.1 0 2.7 1.5 3.3 3 3.5-.4.3-.5.8-.5 1.6V20"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-/* LinkedIn icon (clean + correct) */
-function IconLinkedIn() {
-  return (
-    <svg className="linkCard__icon" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M6.4 9.6V18"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-      />
-      <path
-        d="M6.4 6.6h.01"
-        stroke="currentColor"
-        strokeWidth="3.2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M10.2 18v-4.6c0-2.2 3.5-2.4 3.5 0V18"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-      />
-      <path
-        d="M13.7 13.4c.2-2.4 3.9-2.5 4.1.1V18"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 export default function Desktop() {
   const autoTheme = useMemo(() => {
     const hour = new Date().getHours();
@@ -222,8 +166,6 @@ export default function Desktop() {
 
       <header className="topbar">
         <div className="topbar__left">RETAJ.OS</div>
-
-        {/* فقط Cloud/Night — بدون Sound نهائيًا */}
         <div className="topbar__right">
           <button
             className={`chip ${theme === "night" ? "is-on" : ""}`}
@@ -288,8 +230,7 @@ export default function Desktop() {
                     src={Memoji}
                     alt="Retaj Memoji"
                   />
-                  {/* بديل عن Memoji (animated) */}
-                  <div className="avatar__caption">RETAJ.OS avatar</div>
+                  <div className="avatar__caption">Memoji (animated)RETaj.OS avatar</div>
                 </div>
               </div>
             </div>
@@ -298,6 +239,7 @@ export default function Desktop() {
 
         {open === "about_projects" && (
           <Window title="About & Projects" onClose={() => setOpen("")}>
+            {/* About FIRST */}
             <div style={{ marginBottom: 16 }}>
               <h2>{ABOUT.title}</h2>
               <p className="muted" style={{ lineHeight: 1.7 }}>
@@ -314,6 +256,7 @@ export default function Desktop() {
               </div>
             </div>
 
+            {/* Projects AFTER */}
             <div style={{ marginTop: 18 }}>
               <h2>Projects</h2>
               <p className="muted">
@@ -375,7 +318,7 @@ export default function Desktop() {
         )}
 
         {open === "connect_cv" && (
-          <Window title="Connect" onClose={() => setOpen("")}>
+          <Window title="Connect & CV" onClose={() => setOpen("")}>
             <div className="connect">
               <div className="connect__panel">
                 <h2>Connect</h2>
@@ -384,40 +327,86 @@ export default function Desktop() {
                 </p>
 
                 <div className="connect__grid">
-                  {/* Email */}
-                  <a
-                    className="linkCard"
-                    href={`mailto:${PROFILE.email}`}
-                    aria-label="Email"
-                    title="Email"
-                  >
-                    <IconMail />
+                  <a className="linkCard" href={`mailto:${PROFILE.email}`}>
+                    <svg
+                      className="linkCard__icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                      />
+                      <path
+                        d="M6 8l6 4 6-4"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                     <div className="linkCard__k">Email</div>
                   </a>
 
-                  {/* GitHub */}
                   <a
                     className="linkCard"
                     href={PROFILE.github}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="GitHub"
-                    title="GitHub"
                   >
-                    <IconGitHub />
+                    <svg
+                      className="linkCard__icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M9 19c-3 1-3-1-4-1m8 2v-3.5c0-1 .1-1.5-.5-2 1.5-.2 3-.8 3-3.5 0-.8-.3-1.5-.8-2.1.1-.2.4-1-.1-2.1 0 0-.7-.2-2.2.8-.6-.2-1.3-.3-2-.3s-1.4.1-2 .3c-1.5-1-2.2-.8-2.2-.8-.5 1.1-.2 1.9-.1 2.1-.5.6-.8 1.3-.8 2.1 0 2.7 1.5 3.3 3 3.5-.4.3-.5.8-.5 1.6V20"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                     <div className="linkCard__k">GitHub</div>
                   </a>
 
-                  {/* LinkedIn */}
                   <a
                     className="linkCard"
                     href={PROFILE.linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="LinkedIn"
-                    title="LinkedIn"
                   >
-                    <IconLinkedIn />
+                    <svg
+                      className="linkCard__icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M6.5 9.5V18"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M6.5 6.5h.01"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M10.5 18v-4.6c0-2.1 3-2.3 3 0V18"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M13.5 13.4c0-2.6 4-2.8 4 0V18"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                      />
+                    </svg>
                     <div className="linkCard__k">LinkedIn</div>
                   </a>
                 </div>
@@ -425,9 +414,8 @@ export default function Desktop() {
                 <div className="cvPanel">
                   <div>
                     <div className="cvPanel__title">CV</div>
-
-                    {/* شلت سطر التعليمات — فقط اسم الملف */}
                     <div className="muted small">
+                          <span className="mono"></span> {" "}
                       <span className="mono">{CV_FILE}</span>
                     </div>
                   </div>
@@ -455,7 +443,6 @@ export default function Desktop() {
             onClick={() => setOpen(a.id)}
             title={a.label}
             aria-label={a.label}
-            type="button"
           >
             <span className="dock__icon" aria-hidden="true">
               <a.Icon />
